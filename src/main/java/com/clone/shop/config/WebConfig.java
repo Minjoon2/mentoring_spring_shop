@@ -1,4 +1,4 @@
-package com.clone.shop.settings;
+package com.clone.shop.config;
 
 import java.util.List;
 
@@ -24,13 +24,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
-// 시간이 날떄마다 천천히 하나씩 무슨 기능이 있는지 알아가보자..
+// TODO : webmvc인터페이스는 시간이 날떄마다 천천히 하나씩 무슨 기능이 있는지 알아가보자..
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		//cors origin 허용
-		registry.addMapping("/test/**")
+		registry
+			.addMapping("/test/**")
 			.allowedOrigins("http://localhost:8080")
 			.allowedMethods(HttpMethod.GET.name());
+		registry
+			.addMapping("/user/**")
+			.allowedOrigins("http://localhost:8080")
+			.allowedMethods(HttpMethod.POST.name());
 	}
 	
 	
