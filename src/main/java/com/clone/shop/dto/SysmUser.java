@@ -16,7 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="sysm_user")
+@Table(name="user")
 @SequenceGenerator(name="seq_user_no", sequenceName = "seq_user_no", initialValue=1000, allocationSize = 1 )
 @Getter
 @Setter
@@ -31,6 +31,8 @@ public class SysmUser{
 	1. 몇번 이상으로 넣을수는 없는가 ?
 	 ex)숫자 1000이상부터 1증가
 	 	- @SequenceGenerator
+	 ex)숫자 2씩 증가
+	 	- allocationSize = 2
 	2. 오라클에 있는 시퀀스는 어떻게 사용하지 ?
 	 - 옵션중 GenerationType.SEQUENCE 를 통해 사용가능
 	

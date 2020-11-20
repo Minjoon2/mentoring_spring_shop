@@ -22,7 +22,6 @@ public class UserController {
 		@RequestParam : http 요청 파라미터를 변수로 받는다.
 			- @RequestParam(value = "page", required = false, defaultValue = "1") Integer page
 			- required 와 defaultValue 사용가능, required = true 인데 요청 필드가없으면 400 에러
-			- 요청예제. ?page=3
 			- 원시타입일 경우 어노테이션안붙여도 자동으로 알아먹음
 		@ModelAttribute : http 요청 파라미터를 VO로 받는다.
 			- public ModelAndView search(@ModelAttribute User user)
