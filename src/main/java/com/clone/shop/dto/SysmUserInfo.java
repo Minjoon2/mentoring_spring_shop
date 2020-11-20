@@ -30,8 +30,13 @@ public class SysmUserInfo {
 	@Column(name="seq_user_info_no")
 	private long seqUserInfoNo;
 	
-	@Column(name="uno", unique = true)
-	private long uno;
+	@OneToOne
+	@JoinColumn(name = "uno")
+	//OneToOne 으로 단방향 매핑 설정
+	//JoinColumn으로 내가 fk 걸고싶은 컬럼명 설정
+	//@Column(name="uno", unique = true)
+	//변수 선언은 해당하는 컬럼의 클래스로 생성할것. -- > 한참해맴
+	private SysmUser uno;
 	
 	@ColumnDefault("0")
 	@Column(name="money", nullable=false)
