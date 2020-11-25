@@ -1,11 +1,13 @@
 package com.clone.shop.dto;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,13 +24,14 @@ import lombok.ToString;
 @Setter
 @ToString
 public class SysmUser{
+	//이용자
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_user_no")
 	@Column(name="uno")
 	/*
 	 * GeneratedValue : 자동 생성 전략 어노테이션
 	  
-	1. 몇번 이상으로 넣을수는 없는가 ?
+	1. 몇번 이상으로 넣을수는 없는가 ????
 	 ex)숫자 1000이상부터 1증가
 	 	- @SequenceGenerator
 	 ex)숫자 2씩 증가

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 	@RequestMapping("isTest")
 	public String isTest() {
-		System.out.println("isTest api È£Ãâ");
-		return "apiÈ£Ãâ Å×½ºÆ®ÀÔ´Ï´Ù.";
+		System.out.println("isTest api ì…ë‹ˆë‹¤.");
+		return "apií…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤..";
 	}
 }

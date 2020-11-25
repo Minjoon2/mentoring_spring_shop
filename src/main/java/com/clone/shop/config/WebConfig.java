@@ -24,16 +24,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
-// TODO : webmvcÀÎÅÍÆäÀÌ½º´Â ½Ã°£ÀÌ ³¯‹š¸¶´Ù ÃµÃµÈ÷ ÇÏ³ª¾¿ ¹«½¼ ±â´ÉÀÌ ÀÖ´ÂÁö ¾Ë¾Æ°¡º¸ÀÚ..
+// TODO : webmvcì¸í„°í˜ì´ìŠ¤ëŠ” ì‹œê°„ì´ ë‚ ï¿½ï¿½ë§ˆë‹¤ ì²œì²œíˆ í•˜ë‚˜ì”© ë¬´ìŠ¨ ê¸°ëŠ¥ì´ ìˆëŠ”ì§€ ì•Œì•„ê°€ë³´ì..
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		//cors origin Çã¿ë
+		//cors origin í—ˆìš©
 		registry
 			.addMapping("/test/**")
 			.allowedOrigins("http://localhost:8080")
 			.allowedMethods(HttpMethod.GET.name());
 		registry
 			.addMapping("/user/**")
+			.allowedOrigins("http://localhost:8080")
+			.allowedMethods(HttpMethod.POST.name());
+		registry
+			.addMapping("/shop/**")
 			.allowedOrigins("http://localhost:8080")
 			.allowedMethods(HttpMethod.POST.name());
 	}

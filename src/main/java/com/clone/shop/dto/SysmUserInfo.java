@@ -25,12 +25,13 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SysmUserInfo {
+	//이용자 정보
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="seq_user_info_no")
 	@Column(name="seq_user_info_no")
 	private long seqUserInfoNo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "uno")
 	//OneToOne 으로 단방향 매핑 설정
 	//JoinColumn으로 내가 fk 걸고싶은 컬럼명 설정

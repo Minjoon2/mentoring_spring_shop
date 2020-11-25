@@ -10,49 +10,48 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clone.shop.dto.SysmUser;
 import com.clone.shop.service.SysmUserService;
 
-@RestController // ÀÀ´äÀ» ÀÚµ¿À¸·Î json ÇüÅÂ·Î º¯È¯
+@RestController // ì‘ë‹µì„ ìë™ìœ¼ë¡œ json í˜•íƒœë¡œ ë³€í™˜
 @RequestMapping(value = "user")
 public class UserController {
 	@Autowired
 	SysmUserService sysmUserService;
 	/*
-	 	@PathVariable : Áß°ıÈ£¿¡ ¸í½ÃµÈ °ªÀ» º¯¼ö·Î ¹Ş´Â´Ù.
+	 	@PathVariable : ì¤‘ê´„í˜¸ì— ëª…ì‹œëœ ê°’ì„ ë³€ìˆ˜ë¡œ ë°›ëŠ”ë‹¤.
 			- @RequestMapping("/user/{id}")
 			- public String userInfo(@PathVariable("id") String id)
-		@RequestParam : http ¿äÃ» ÆÄ¶ó¹ÌÅÍ¸¦ º¯¼ö·Î ¹Ş´Â´Ù.
+		@RequestParam : http ìš”ì²­ íŒŒë¼ë¯¸í„°ë¥¼ ë³€ìˆ˜ë¡œ ë°›ëŠ”ë‹¤.
 			- @RequestParam(value = "page", required = false, defaultValue = "1") Integer page
-			- required ¿Í defaultValue »ç¿ë°¡´É, required = true ÀÎµ¥ ¿äÃ» ÇÊµå°¡¾øÀ¸¸é 400 ¿¡·¯
-			- ¿ø½ÃÅ¸ÀÔÀÏ °æ¿ì ¾î³ëÅ×ÀÌ¼Ç¾ÈºÙ¿©µµ ÀÚµ¿À¸·Î ¾Ë¾Æ¸ÔÀ½
-		@ModelAttribute : http ¿äÃ» ÆÄ¶ó¹ÌÅÍ¸¦ VO·Î ¹Ş´Â´Ù.
+			- required ì™€ defaultValue ì‚¬ìš©ê°€ëŠ¥, required = true ì¸ë° ìš”ì²­ í•„ë“œê°€ì—†ìœ¼ë©´ 400 ì—ëŸ¬
+			- ì›ì‹œíƒ€ì…ì¼ ê²½ìš° ì–´ë…¸í…Œì´ì…˜ì•ˆë¶™ì—¬ë„ ìë™ìœ¼ë¡œ ì•Œì•„ë¨¹ìŒ
+		@ModelAttribute : http ìš”ì²­ íŒŒë¼ë¯¸í„°ë¥¼ VOë¡œ ë°›ëŠ”ë‹¤.
 			- public ModelAndView search(@ModelAttribute User user)
-			- ·¹ÆÛ·±½ºÅ¸ÀÔÀÏ °æ¿ì ¾î³ëÅ×ÀÌ¼Ç¾ÈºÙ¿©µµ ÀÚµ¿À¸·Î ¾Ë¾Æ¸ÔÀ½. Áï ¿ø½ÃÅ¸ÀÔÀº RequestParamÀ¸·Î, °´Ã¼Å¸ÀÔÀº ModelAttribute ·Î
-			- ¿äÃ» ÆÄ¶ó¹ÌÅÍ°¡ ¸¹À»°æ¿ì VO·Î ¹Ş´Â°Ô °¡µ¶¼ºÀÌ³ª ÄÚµåÈ¿À² »ó ÁÁ´Ù.
-			- ÀÌ°É Ä¿¸Çµå °´Ã¼¶ó°íµµ ÇÑ´Ù.
-			- ¸Ş¼Òµå ·¹º§¿¡¼­ annotationÀ» ¼±¾ğÇÏ¸é ModelMap.addAttribute ¿Í °°Àº ±â´ÉÀ» ÇÑ´Ù.
-				ex. @ModelAttribute("users") ÀÌ¸é ModelMap.addAttribute("users", ¸Ş¼ÒµåÀÇ ¸®ÅÏ°ª)
-		@RequestBody : HTTP ¿äÃ»ÀÇ body ºÎºĞÀ» ±×´ë·Î º¯¼ö¿¡ ³Ö´Â´Ù. XML, JSON ÀÏ‹š ÀÌ°ÍÀ» ÁÖ·Î »ç¿ëÇÑ´Ù.
+			- ë ˆí¼ëŸ°ìŠ¤íƒ€ì…ì¼ ê²½ìš° ì–´ë…¸í…Œì´ì…˜ì•ˆë¶™ì—¬ë„ ìë™ìœ¼ë¡œ ì•Œì•„ë¨¹ìŒ. ì¦‰ ì›ì‹œíƒ€ì…ì€ RequestParamìœ¼ë¡œ, ê°ì²´íƒ€ì…ì€ ModelAttribute ë¡œ
+			- ìš”ì²­ íŒŒë¼ë¯¸í„°ê°€ ë§ì„ê²½ìš° VOë¡œ ë°›ëŠ”ê²Œ ê°€ë…ì„±ì´ë‚˜ ì½”ë“œíš¨ìœ¨ ìƒ ì¢‹ë‹¤.
+			- ì´ê±¸ ì»¤ë§¨ë“œ ê°ì²´ë¼ê³ ë„ í•œë‹¤.
+			- ë©”ì†Œë“œ ë ˆë²¨ì—ì„œ annotationì„ ì„ ì–¸í•˜ë©´ ModelMap.addAttribute ì™€ ê°™ì€ ê¸°ëŠ¥ì„ í•œë‹¤.
+				ex. @ModelAttribute("users") ì´ë©´ ModelMap.addAttribute("users", ë©”ì†Œë“œì˜ ë¦¬í„´ê°’)
+		@RequestBody : HTTP ìš”ì²­ì˜ body ë¶€ë¶„ì„ ê·¸ëŒ€ë¡œ ë³€ìˆ˜ì— ë„£ëŠ”ë‹¤. XML, JSON ì¼ï¿½ï¿½ ì´ê²ƒì„ ì£¼ë¡œ ì‚¬ìš©í•œë‹¤.
 			public String message(@RequestBody KakaobotRequest request)
-			¿¹¸¦µé¾î json ±¸Á¶Ã³·³ KakaobotRequest.java ¸¦ ¸ÂÃá´Ù¸é ÆÄ½ÌÇØ¼­ Àß µé¾î°¥ °ÍÀÌ´Ù.
-		@CookieValue : ¿äÃ»ÀÇ ÄíÅ°Á¤º¸¸¦ °¡Á®¿Â´Ù
-		@RequestHeader : ¿äÃ»Çì´õ Á¤º¸¸¦ °¡Á®¿Â´Ù
+			ì˜ˆë¥¼ë“¤ì–´ json êµ¬ì¡°ì²˜ëŸ¼ KakaobotRequest.java ë¥¼ ë§ì¶˜ë‹¤ë©´ íŒŒì‹±í•´ì„œ ì˜ ë“¤ì–´ê°ˆ ê²ƒì´ë‹¤.
+		@CookieValue : ìš”ì²­ì˜ ì¿ í‚¤ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤
+		@RequestHeader : ìš”ì²­í—¤ë” ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤
 		@RequestHeader("host") String host
 	 */
 
 	
-	// TODO : REPOSITORY¿¡¼­ ÀÏ¾î³ª´Â ERROR EXCEPTION Ã³¸® ¾î¶»°Ô ?
-	//	- Áßº¹, ·¹ÄÚµå ¾øÀ½(NULL) µîµî..
+	// TODO : REPOSITORYì—ì„œ ì¼ì–´ë‚˜ëŠ” ERROR EXCEPTION ì²˜ë¦¬ ì–´ë–»ê²Œ ?
+	//	- ì¤‘ë³µ, ë ˆì½”ë“œ ì—†ìŒ(NULL) ë“±ë“±..
 	
-	@PostMapping(value = "save")
+	@PostMapping(value = "signup")
 	public String saveUser(@ModelAttribute SysmUser user) {
 		System.out.println(user.toString());
-		sysmUserService.saveUser(user);
-		return "save success!";
+		sysmUserService.signUp(user);
+		return "sign up success!";
 	}
 	
 	@PostMapping(value = "delete")
 	public String deleteUser(@ModelAttribute SysmUser user) {
-		System.out.println(user.getEmail());
-		sysmUserService.deleteUserByEmail(user.getEmail());
+		sysmUserService.deleteUserByEmail(user);
 		return "delete success!";
 	}
 	
@@ -66,5 +65,17 @@ public class UserController {
 	public SysmUser getUser(String email) {
 		System.out.println(email);
 		return sysmUserService.getUser(email);
+	}
+	
+	@PostMapping(value ="money/get")
+	public int getMoney(@ModelAttribute SysmUser user) {
+		return sysmUserService.getUserMoney(user);
+	}
+	@PostMapping(value ="money/add")
+	public String addMoney(@ModelAttribute SysmUser user, 
+			@RequestParam(name = "money") int money) {
+		System.out.println("user !!! "+user.toString());
+		sysmUserService.addUserMoney(user, money);
+		return "add money success";
 	}
 }
