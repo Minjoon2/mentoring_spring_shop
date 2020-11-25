@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SysmUserInfo {
-	//ÀÌ¿ëÀÚ Á¤º¸
+	//ì´ìš©ìž ì •ë³´
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="seq_user_info_no")
 	@Column(name="seq_user_info_no")
@@ -33,10 +33,10 @@ public class SysmUserInfo {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "uno")
-	//OneToOne À¸·Î ´Ü¹æÇâ ¸ÅÇÎ ¼³Á¤
-	//JoinColumnÀ¸·Î ³»°¡ fk °É°í½ÍÀº ÄÃ·³¸í ¼³Á¤
+	//OneToOne ìœ¼ë¡œ ë‹¨ë°©í–¥ ë§¤í•‘ ì„¤ì •
+	//JoinColumnìœ¼ë¡œ ë‚´ê°€ fk ê±¸ê³ ì‹¶ì€ ì»¬ëŸ¼ëª… ì„¤ì •
 	//@Column(name="uno", unique = true)
-	//º¯¼ö ¼±¾ðÀº ÇØ´çÇÏ´Â ÄÃ·³ÀÇ Å¬·¡½º·Î »ý¼ºÇÒ°Í. -- > ÇÑÂüÇØ¸É
+	//ë³€ìˆ˜ ì„ ì–¸ì€ í•´ë‹¹í•˜ëŠ” ì»¬ëŸ¼ì˜ í´ëž˜ìŠ¤ë¡œ ìƒì„±í• ê²ƒ. -- > í•œì°¸í•´ë§´
 	private SysmUser uno;
 	
 	@ColumnDefault("0")
