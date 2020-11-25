@@ -21,7 +21,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ShopGoods {
-	//»óÇ°
+	//ìƒí’ˆ
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_goods_code")
 	@Column(name="seq_goods_code")
